@@ -1,6 +1,6 @@
 import './App.css';
 import {v4 as uuid} from 'uuid';
-import {BrowserRouter as Router, Routes, Route, NavLink} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, NavLink ,Navigate} from 'react-router-dom';
 import Editor from './components/editor';
 
 function App() {

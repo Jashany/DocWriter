@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect,useState,useRef } from "react";
 
 import Quill from "quill";
 import 'quill/dist/quill.snow.css';
@@ -35,8 +35,13 @@ const Editor = () => {
 	const [quill, setQuill] = useState();
 	const {id} = useParams();
 
-	useEffect(() => {
-		const quillServer = new Quill('#container', {
+	const toolbarref = useCallback(wrapper => {
+		if(wrapper === null) return;
+
+		wrapper.innerHTML = '';
+		const editor = document.createElement('div');
+		wrapper.append(editor)
+		const quillServer = new Quill(editor, {
 			theme: 'snow',
 			modules: {toolbar: toolbarOptions}})
 			quillServer.disable();
@@ -106,7 +111,7 @@ const Editor = () => {
 
   return(
 	<Component>
-		<Box className="container" id='container'></Box>
+		<Box className="container" id='container' ref={toolbarref}></Box>
 	</Component>
   )
 };
